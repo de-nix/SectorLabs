@@ -21,7 +21,15 @@
                 Gist Files
                 <ol>
                     {% for file in gist.files %}
-                        <li>{{ file.name }}</li>
+                        <li>
+                        <div>
+                            <div>
+                            {{ file.name }}
+                            </div>
+                            <div>
+                            #{{ file.filetype }}
+                            </div>
+                        </div></li>
                     {% endfor %}
                 </ol>
 
