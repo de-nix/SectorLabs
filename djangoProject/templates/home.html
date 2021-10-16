@@ -14,31 +14,22 @@
 </head>
 <body>
 
-{#<form action="getHome" method="get" class="form-inline">#}
-{#    <div class="form-group mx-sm-3 mb-2">#}
-{#        <label for="username" class="sr-only">Username</label>#}
-{#        <div class="col-sm-10">#}
-{#            <input type="text" class="form-control" id="username" name='username'#}
-{#                   placeholder="Search for a github user">#}
-{#        </div>  </div>#}
-{#        <button type="submit" class="btn btn-primary mb-2">Search</button>#}
-{#</form>#}
 <div class="searchbar">
     <div class="centered">
-  <form class="form-inline" action="getHome" method="get">
+        <form class="form-inline" action="getHome" method="get">
 
-<div class="input-group">
-  <div class="form-outline bar">
-    <input type="search" name="username" id="form1" placeholder="Search for a github username" class="form-control" />
-  </div>
-  <button type="submit" class="myButton btn btn-primary">
-    Search
-  </button>
+            <div class="input-group">
+                <div class="form-outline bar">
+                    <input type="search" name="username" id="form1" placeholder="Search for a github username"
+                           class="form-control"/>
+                </div>
+                <button type="submit" class="myButton btn btn-primary">
+                    Search
+                </button>
+            </div>
+        </form>
+    </div>
 </div>
-  </form></div>
-</div>
-
-
 
 <ul class="list-group">
     {% for gist in gists %}

@@ -13,30 +13,31 @@ def getHomeWithUser(request):
     gists = []
     if username != "":
         text = 'https://api.github.com/users/' + username + '/gists'
-        r = json.loads(requests.get(text).text)
-        for gist in r:
-            g = models.Gist()
-            g.files = []
-            g.forks = []
-            g.name = gist["description"]
+        result = json.loads(requests.get(text).text)
+        for gist in result:
+            newGist = models.Gist()
+            newGist.files = []
+            newGist.forks = []
+            newGist.name = gist["description"]
             forks_link = gist["forks_url"]
             forks = json.loads(requests.get(forks_link).text)
-            if len(forks)>3:
+            if len(forks) > 3:
                 forks = forks[:3]
             for fork in forks:
-                u = models.User()
-                u.name = fork["owner"]["login"]
-                u.photo = str(base64.b64encode(requests.get(fork["owner"]["avatar_url"]).content))[2:]
-                u.photo = u.photo[:-1]
-                g.forks.append(u)
+                user = models.User()
+                user.name = fork["owner"]["login"]
+                user.photo = str(base64.b64encode(requests.get(fork["owner"]["avatar_url"]).content))[2:]
+                user.photo = user.photo[:-1]
+                newGist.forks.append(user)
             for file in gist["files"]:
-                f = models.File()
-                f.name = gist["files"][file]["filename"]
-                f.filetype = gist["files"][file]["type"]
-                f.content = gist["files"][file]["raw_url"]
-                g.files.append(f)
-            gists.append(g)
+                newFile = models.File()
+                newFile.name = gist["files"][file]["filename"]
+                newFile.filetype = gist["files"][file]["type"]
+                newFile.content = gist["files"][file]["raw_url"]
+                newGist.files.append(newFile)
+            gists.append(newGist)
     return render(request, "home.html", {'gists': gists})
+
 
 def getHome(request):
     gists = []
