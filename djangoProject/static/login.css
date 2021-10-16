@@ -1,0 +1,16 @@
+.flex {
+    margin : 0 auto;
+    position: absolute;
+    width : 300px;
+    height: 150px;
+    top: 40%;
+    bottom: 40%;
+    left: 40%;
+    border-color: black;
+    mso-border-width-alt: 3px;
+    border-width: 3px;
+}
+
+.bg{
+    background: ivory;
+}
