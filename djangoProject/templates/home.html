@@ -16,8 +16,16 @@
     {% for gist in gists %}
     <li>
         <div>
-            <div>{{ gist.name}}}</div>
-            <div></div>
+            <div>{{gist.name}}</div>
+            <div>
+                Gist Files
+                <ol>
+                    {% for file in gist.files %}
+                        <li>{{ file.name }}</li>
+                    {% endfor %}
+                </ol>
+
+            </div>
         </div>
     </li>
     {% endfor %}
